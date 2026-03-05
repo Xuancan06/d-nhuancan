@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chúc mừng 8/3 - Món quà đặc biệt dành cho em</title>
+    <style>
+        /* RESET & BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* BACKGROUND TEXT EFFECT */
+        .background-text {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            overflow: hidden;
+        }
+
+        .text-item {
+            position: absolute;
+            white-space: nowrap;
+            animation: floatText 20s linear infinite;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        @keyframes floatText {
+            0% {
+                transform: translateX(100%) translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-100%) translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* FLOATING HEARTS & FLOWERS */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .float-element {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.8);
+            font-size: 20px;
+            animation: float 6s ease-in infinite;
+            text-shadow: 0 0 10px rgba(255,0,0,0.3);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(-100%) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* SNOW/FLOWER FALL */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .snow {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 15px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* GIFT BOX */
+        .gift-section {
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.05);
+        }
+
+        .box-lid {
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            position: relative;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+            border: 2px solid #fff;
+            border-bottom: none;
+        }
+
+        .box-body {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #ff5252, #ff7676);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            border: 2px solid #fff;
+            border-top: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box-body::before {
+            content: "🎀";
+            font-size: 50px;
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .gift-ribbon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 40px;
+            height: 100%;
+            background: #ffd700;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .gift-ribbon-vertical {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: #ffd700;
+            transform: translateY(-50%);
+            z-index: 3;
+        }
+
+        .gift-message {
+            color: white;
+            font-size: 14px;
+            position: relative;
+            z-index: 4;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .open-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.5);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255,107,107,0.6);
+        }
+
+        /* PHOTO SECTION */
+        .photo-section {
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .photo-frame {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.1s ease;
+            border: 4px solid white;
+            cursor: pointer;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .wish-text {
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8),
+                         0 0 20px rgba(255,182,193,0.8),
+                         0 0 30px rgba(255,105,180,0.8);
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-top: 20px;
+            animation: glow 2s ease-in-out infinite;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(255,255,255,0.8),
+                             0 0 20px rgba(255,182,193,0.8),
+                             0 0 30px rgba(255,105,180,0.8);
+            }
+            50% {
+                text-shadow: 0 0 15px rgba(255,255,255,1),
+                             0 0 25px rgba(255,182,193,1),
+                             0 0 35px rgba(255,105,180,1);
+            }
+        }
+
+        /* CLICK EFFECT */
+        .click-effect {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: clickPop 0.5s ease-out forwards;
+        }
+
+        @keyframes clickPop {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* HIDDEN CLASS */
+        .hidden {
+            display: none !important;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .gift-box {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .box-lid {
+                height: 30px;
+            }
+            
+            .box-body {
+                height: 120px;
+            }
+            
+            .photo-frame {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .wish-text {
+                font-size: 22px;
+                padding: 15px;
+            }
+            
+            .open-btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .wish-text {
+                font-size: 18px;
+            }
+            
+            .photo-frame {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background floating text -->
+    <div class="background-text" id="backgroundText"></div>
+    
+    <!-- Floating hearts (will appear after gift opens) -->
+    <div class="floating-elements" id="floatingHearts"></div>
+    
+    <!-- Snow/Flower fall effect -->
+    <div class="snow-container" id="snowContainer"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Gift section -->
+        <div class="gift-section" id="giftSection">
+            <div class="gift-box" id="giftBox" onclick="openGift()">
+                <div class="box-lid" id="giftLid">
+                    <div class="gift-ribbon"></div>
+                </div>
+                <div class="box-body">
+                    <div class="gift-ribbon-vertical"></div>
+                    <div class="gift-message">🎁</div>
+                </div>
+            </div>
+            <button class="open-btn" onclick="openGift()">Mở món quà</button>
+        </div>
+
+        <!-- Photo section (initially hidden) -->
+        <div class="photo-section" id="photoSection">
+            <div class="photo-frame" id="photoFrame">
+                <!-- Dễ dàng thay đổi ảnh người nhận - thay đường dẫn src bên dưới -->
+                <img src="https://via.placeholder.com/300x300/ff6b6b/ffffff?text=Ảnh+của+em" alt="Người nhận" id="recipientPhoto">
+            </div>
+            <!-- Dễ dàng thay đổi nội dung lời chúc - chỉ cần sửa text bên dưới -->
+            <div class="wish-text" id="wishText">
+                Chúc em một ngày 8/3 thật vui vẻ,<br>
+                luôn xinh đẹp, hạnh phúc và gặp nhiều<br>
+                may mắn trong cuộc sống.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration - Dễ dàng thay đổi nội dung
+        const CONFIG = {
+            // Mảng các chữ chạy nền
+            backgroundTexts: [
+                "Happy Women's Day",
+                "Chúc em luôn vui vẻ",
+                "8/3",
+                "Always smile",
+                "Stay happy",
+                "Love",
+                "🌸",
+                "💝",
+                "✨"
+            ],
+            // Nội dung lời chúc (có thể thay đổi)
+            wishMessage: "Chúc em một ngày 8/3 thật vui vẻ, luôn xinh đẹp, hạnh phúc và gặp nhiều may mắn trong cuộc sống.",
+            // Đường dẫn ảnh (có thể thay đổi)
+            photoUrl: "https://via.placeholder.com/300x300/ff6b6b/ffffff?text=Ảnh+của+em"
+        };
+
+        // Update wish text from config
+        document.getElementById('wishText').innerHTML = CONFIG.wishMessage.replace(/\n/g, '<br>');
+        
+        // Update photo if needed (uncomment the line below and add your image URL)
+        // document.getElementById('recipientPhoto').src = CONFIG.photoUrl;
+
+        // Background text effect
+        function createBackgroundText() {
+            const container = document.getElementById('backgroundText');
+            for (let i = 0; i < 20; i++) {
+                const text = document.createElement('div');
+                text.className = 'text-item';
+                text.style.top = Math.random() * 100 + '%';
+                text.style.left = Math.random() * 100 + '%';
+                text.style.animationDelay = Math.random() * 20 + 's';
+                text.style.animationDuration = (15 + Math.random() * 10) + 's';
+                text.style.fontSize = (20 + Math.random() * 30) + 'px';
+                text.style.opacity = 0.1 + Math.random() * 0.2;
+                text.textContent = CONFIG.backgroundTexts[Math.floor(Math.random() * CONFIG.backgroundTexts.length)];
+                container.appendChild(text);
+            }
+        }
+
+        // Snow/Flower fall effect
+        function createSnow() {
+            const container = document.getElementById('snowContainer');
+            setInterval(() => {
+                if (document.getElementById('photoSection').style.opacity == 1) {
+                    const snow = document.createElement('div');
+                    snow.className = 'snow';
+                    snow.style.left = Math.random() * 100 + '%';
+                    snow.style.animationDuration = (3 + Math.random() * 4) + 's';
+                    snow.style.fontSize = (15 + Math.random() * 20) + 'px';
+                    snow.style.opacity = 0.3 + Math.random() * 0.5;
+                    // Random between flower and heart
+                    snow.innerHTML = Math.random() > 0.5 ? '🌸' : '🌺';
+                    container.appendChild(snow);
+                    
+                    setTimeout(() => {
+                        snow.remove();
+                    }, 5000);
+                }
+            }, 300);
+        }
+
+        // Floating hearts effect
+        function createFloatingHeart() {
+            const container = document.getElementById('floatingHearts');
+            setInterval(() => {
+                if (document.getElementById('photoSection').style.opacity == 1) {
+                    const heart = document.createElement('div');
+                    heart.className = 'float-element';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+                    heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+                    heart.innerHTML = '❤️';
+                    container.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 5000);
+                }
+            }, 500);
+        }
+
+        // Click effect (hearts/fireworks)
+        document.addEventListener('click', function(e) {
+            if (document.getElementById('photoSection').style.opacity == 1) {
+                const effect = document.createElement('div');
+                effect.className = 'click-effect';
+                effect.style.left = (e.pageX - 20) + 'px';
+                effect.style.top = (e.pageY - 20) + 'px';
+                effect.style.fontSize = '40px';
+                effect.innerHTML = Math.random() > 0.3 ? '❤️' : '🎆';
+                document.body.appendChild(effect);
+                
+                setTimeout(() => {
+                    effect.remove();
+                }, 500);
+            }
+        });
+
+        // Open gift function
+        function openGift() {
+            const giftSection = document.getElementById('giftSection');
+            const photoSection = document.getElementById('photoSection');
+            const giftLid = document.getElementById('giftLid');
+            
+            // Animate lid opening
+            giftLid.style.transform = 'rotateX(110deg)';
+            
+            setTimeout(() => {
+                giftSection.style.opacity = '0';
+                setTimeout(() => {
+                    giftSection.classList.add('hidden');
+                    photoSection.style.opacity = '1';
+                    photoSection.classList.remove('hidden');
+                    
+                    // Start floating hearts
+                    createFloatingHeart();
+                }, 500);
+            }, 500);
+        }
+
+        // 3D Tilt effect for photo
+        const photoFrame = document.getElementById('photoFrame');
+        
+        document.addEventListener('mousemove', function(e) {
+            if (document.getElementById('photoSection').style.opacity == 1) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                photoFrame.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            }
+        });
+
+        // Parallax effect for background
+        document.addEventListener('mousemove', function(e) {
+            if (document.getElementById('photoSection').style.opacity == 1) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                const background = document.querySelector('.background-text');
+                background.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            }
+        });
+
+        // Touch support for mobile
+        document.addEventListener('touchmove', function(e) {
+            if (document.getElementById('photoSection').style.opacity == 1 && e.touches.length > 0) {
+                const touch = e.touches[0];
+                const xAxis = (window.innerWidth / 2 - touch.clientX) / 25;
+                const yAxis = (window.innerHeight / 2 - touch.clientY) / 25;
+                photoFrame.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                
+                // Parallax for mobile
+                const x = touch.clientX / window.innerWidth;
+                const y = touch.clientY / window.innerHeight;
+                const background = document.querySelector('.background-text');
+                background.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            }
+        });
+
+        // Initialize effects
+        createBackgroundText();
+        createSnow();
+
+        // For mobile: add initial instruction
+        if (window.innerWidth <= 768) {
+            console.log('Mobile view - touch to interact');
+        }
+    </script>
+</body>
+</html>
